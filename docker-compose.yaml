@@ -1,0 +1,10 @@
+version: "3.8"
+
+services:
+    tappie:
+        build: .
+        ports:
+            - "3100:3000"
+        # 將本機根目錄的資料夾掛載至 container 的工作目錄 app 資料夾中
+        volumes:
+            - ./:/app

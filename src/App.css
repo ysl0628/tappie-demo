@@ -1,38 +1,245 @@
-.App {
-  text-align: center;
+img {
+  max-width: 100%;
+  height: auto;
+}
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.header {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  background-color: rgba(4, 88, 148, 1);
+  background-image: url(https://d5j80r6ig58b5.cloudfront.net/img/44/s00044-1b58da6d-1d43-4d04-aef5-649711950c94);
+  background-position: right;
+  background-repeat: no-repeat;
+  background-size: contain;
+  padding: 30px;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.header > div {
+  margin: 10px 0;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.header .title,
+.live-chat-title {
+  font-size: 20px;
+  font-weight: bolder;
+}
+
+.month span {
+  margin: 0 10px;
+}
+
+.month input[type="radio"] {
+  opacity: 0;
+  position: fixed;
+  width: 0;
+}
+
+.month input[type="radio"] + label {
+  cursor: pointer;
+}
+
+.month input[type="radio"]:checked + label {
+  color: yellow;
+}
+
+.live-chat-switch input[type="checkbox"] {
+  opacity: 0;
+  position: fixed;
+  width: 0;
+}
+
+.live-chat-switch input[type="checkbox"] + label {
+  width: 40px;
+  height: 25px;
+  background-color: rgba(0, 0, 0, 0.65);
+  border-radius: 100px;
+  display: block;
+  position: relative;
+  cursor: pointer;
+}
+
+.live-chat-switch input[type="checkbox"] + label::after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 21px;
+  height: 21px;
+  background-color: #fff;
+  border-radius: 50%;
+  transition: 0.3s;
+}
+
+.live-chat-switch input[type="checkbox"]:checked + label {
+  background-color: rgb(242, 211, 10);
+}
+
+.live-chat-switch input[type="checkbox"]:checked + label::after {
+  left: calc(100% - 2px);
+  transform: translateX(-100%);
+}
+
+@media (max-width: 767px) {
+  .header {
+    background-image: url(https://d5j80r6ig58b5.cloudfront.net/img/44/s00044-351e09ab-722c-43e4-835f-0e9e3c1bd66c);
+    padding-top: calc(55vw + 100px);
+    background-position: top;
   }
-  to {
-    transform: rotate(360deg);
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  padding: 50px;
+  background-color: rgb(239, 239, 239);
+}
+
+.card {
+  width: 25vw;
+  margin: 30px 30px 80px 30px;
+  position: relative;
+  z-index: 1;
+}
+
+.card-base-entry,
+.card-base-pro,
+.card-base-business {
+  position: absolute;
+  bottom: -80px;
+  left: -50px;
+  width: 20vw;
+  height: 400px;
+  z-index: -1;
+}
+
+.card .title {
+  /* width: 25vw; */
+  height: 10vw;
+  padding: 80px 30px;
+  display: flex;
+  justify-content: center;
+  color: #fff;
+  font-size: 28px;
+  align-items: center;
+  text-align: center;
+  line-height: 36px;
+}
+
+.entry-plan .title,
+.entry-plan button,
+.card-base-entry {
+  background-color: rgb(255, 214, 0);
+}
+.pro-plan .title,
+.pro-plan button,
+.card-base-pro {
+  background-color: cadetblue;
+}
+.business-plan .title,
+.business-plan button,
+.card-base-business {
+  background-color: rgb(4, 88, 148);
+}
+
+.entry-plan:hover,
+.pro-plan:hover,
+.business-plan:hover {
+  transform: translate(-5px, -5px);
+  box-shadow: lightgray 0px 0px 8px;
+}
+
+.price-board {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 30px 50px 10px 50px;
+  color: rgb(73, 73, 73);
+  /* display: flex;
+  flex-direction: column;
+  justify-content: center; */
+  text-align: center;
+  background-color: #fff;
+}
+
+.price-board button {
+  margin: 20px auto 0px auto;
+  width: 120px;
+  height: 40px;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.card .collapse {
+  display: none;
+}
+/* .card .content {
+  background-color: #fff;
+  padding: 10px;
+}
+
+.card .content > ul {
+  text-align: center;
+  padding-bottom: 30px;
+}
+
+.card .content > ul > li {
+  padding-top: 20px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  line-height: 20px;
+  font-size: 14px;
+}
+
+.card .content > ul > li > span {
+  font-size: 16px;
+  font-weight: 600;
+} */
+
+@media (max-width: 767px) {
+  .container {
+    flex-direction: column;
+    align-items: center;
+  }
+  .card {
+    width: 85vw;
+    margin: 30px 0px;
+  }
+  .card-base-entry,
+  .card-base-pro,
+  .card-base-business {
+    display: none;
+  }
+
+  .entry-plan:hover,
+  .pro-plan:hover,
+  .business-plan:hover {
+    transform: none;
+    box-shadow: none;
+  }
+
+  .card .title {
+    width: 100%;
+  }
+
+  .card .collapse {
+    display: block;
+    background-color: #fff;
+    text-align: center;
+    padding-bottom: 20px;
+  }
+
+  .card .collapse button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
   }
 }
