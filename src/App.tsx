@@ -2,10 +2,7 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import useData from "./hooks/useData";
 import Entry from "./components/Entry";
-import Pro from "./components/Pro";
-import Business from "./components/Business";
 import Month from "./components/Month";
-import Modal from "./components/Modal";
 import Card from "./components/Card";
 
 function App() {
@@ -13,7 +10,6 @@ function App() {
   const [planIndex, setPlanIndex] = useState(0);
   const [slicePlan, setSlicePlan] = useState<any>();
   const [liveChat, setLiveChat] = useState(false);
-  const [modal, setModal] = useState(false);
   useEffect(() => {
     plans && setSlicePlan(plans[planIndex].contents.slice(0, 2).reverse());
     plans &&
@@ -34,6 +30,7 @@ function App() {
               plan={plan}
               setPlanIndex={setPlanIndex}
               index={index}
+              planIndex={planIndex}
             />
           ))}
         </div>

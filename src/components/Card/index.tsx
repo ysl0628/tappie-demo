@@ -1,6 +1,6 @@
 import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import useRWD from "../../hooks/useRWD";
 import Business from "../Business";
 import Modal from "../Modal";
