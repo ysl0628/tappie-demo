@@ -1,3 +1,5 @@
+import { faRobot } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 
 type PropType = {
@@ -13,11 +15,23 @@ type PropType = {
   };
   setPlanIndex: React.Dispatch<React.SetStateAction<number>>;
   index: number;
+  planIndex: number;
 };
 
-export default function Month({ plan, setPlanIndex, index }: PropType) {
+export default function Month({
+  plan,
+  setPlanIndex,
+  index,
+  planIndex,
+}: PropType) {
   return (
     <>
+      {planIndex === index ? (
+        <FontAwesomeIcon
+          icon={faRobot}
+          style={{ color: "yellow", marginRight: "0.5rem" }}
+        />
+      ) : null}
       <input
         type="radio"
         name="monthChoose"
