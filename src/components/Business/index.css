@@ -13,12 +13,9 @@
   font-size: 16px;
 }
 
-.content tr {
-  /* border: 1px solid palevioletred; */
-}
 .content th {
   padding: 10px 10px 10px 0px;
-  line-height: 20px;
+  line-height: 2;
 }
 
 .content th .check {
@@ -31,6 +28,7 @@
   width: 80%;
   padding: 10px 0px 10px 10px;
   color: rgb(73, 73, 73);
+  line-height: 2;
 }
 
 .content td > span {

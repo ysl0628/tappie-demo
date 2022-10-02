@@ -5,7 +5,7 @@
   left: 0;
   right: 0;
   margin: auto;
-  max-width: 500px;
+  width: 30%;
   max-height: fit-content;
   background-color: #fff;
   box-shadow: 0 4px 20px 2px rgba(0, 0, 0, 0.4);
@@ -14,6 +14,7 @@
   align-items: start;
   flex-direction: column;
 }
+
 .close {
   margin: 20px 25px 10px auto;
 }
@@ -24,12 +25,13 @@
   font-size: 16px;
 }
 .form {
-  margin: 10px 25px;
+  margin: 0.625rem auto;
+  width: 90%;
 }
 .form table {
   border: 1px solid rgb(193, 193, 193);
   font-size: 14px;
-  width: 450px;
+  width: 100%;
 }
 .form tr,
 .form td,
@@ -37,6 +39,7 @@
   border: 1px solid rgb(193, 193, 193);
   padding: 10px 15px;
   text-align: left;
+  vertical-align: middle;
 }
 .form th {
   background-color: rgb(235, 235, 235);
@@ -45,7 +48,18 @@
   width: 60%;
 }
 .notice {
-  margin: 0px 25px;
+  margin: 0px auto;
+}
+
+@media (max-width: 767px) {
+  .wrapper {
+    width: 100%;
+  }
+
+  .notice {
+    margin: 0px auto;
+    text-align: start;
+  }
 }
 
 .notice p {
@@ -62,6 +76,7 @@
   border-radius: 5px;
   margin-left: 10px;
   background-color: #fff;
+  cursor: pointer;
 }
 button[type="submit"] {
   background-color: rgb(35, 182, 121);
