@@ -1,0 +1,66 @@
+import React from "react";
+
+const usePlan = () => {
+  const plans = {
+    entry: {
+      plan: "Entry",
+      selector: true,
+      notice: false,
+      discount: false,
+      dataIO: false,
+      freeShipping: false,
+      logisticsA: 0,
+      logisticsB: false,
+      paymentFlow: "",
+      cart: false,
+      orderSearch: false,
+      widget: true,
+      hotItems: 1,
+      productSort: 2,
+      products: 5,
+      news: [2, 0],
+      fan: "無上限",
+    },
+    business: {
+      plan: "Business",
+      selector: true,
+      notice: true,
+      discount: true,
+      dataIO: true,
+      freeShipping: true,
+      logisticsA: 1,
+      logisticsB: true,
+      paymentFlow: "ATM",
+      cart: true,
+      orderSearch: true,
+      widget: true,
+      hotItems: 1,
+      productSort: 2,
+      products: 5,
+      news: [2, 0],
+      fan: "無上限",
+    },
+    pro: {
+      plan: "Pro",
+      selector: true,
+      notice: true,
+      discount: true,
+      dataIO: true,
+      freeShipping: true,
+      logisticsA: true,
+      logisticsB: 9,
+      paymentFlow: "ATM、綠界、藍新、LINEPAY",
+      cart: true,
+      orderSearch: true,
+      widget: true,
+      hotItems: 10,
+      productSort: 8,
+      products: 160,
+      news: [15, 3],
+      fan: "無上限",
+    },
+  };
+  return plans;
+};
+
+export default usePlan;

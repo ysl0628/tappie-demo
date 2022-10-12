@@ -1,20 +1,45 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 import useData from "./hooks/useData";
-import Entry from "./components/Entry";
 import Month from "./components/Month";
 import Card from "./components/Card";
+import useRWD from "./hooks/useRWD";
+import PlanSelect from "./components/PlanSelect";
 
 function App() {
   const { plans, isSuccess, isLoading } = useData();
   const [planIndex, setPlanIndex] = useState(0);
+  const [planType, setPlanType] = useState<string | number>("ALL");
   const [slicePlan, setSlicePlan] = useState<any>();
+  const [liveChatPlan, setLiveChatPlan] = useState<any>();
   const [liveChat, setLiveChat] = useState(false);
+  const device = useRWD();
+  console.log(liveChatPlan);
+
   useEffect(() => {
-    plans && setSlicePlan(plans[planIndex].contents.slice(0, 2).reverse());
+    plans &&
+      setSlicePlan(
+        plans[planIndex].contents
+          .filter(
+            (plan) =>
+              plan.type === "ENTRY" ||
+              plan.type === "BASIC" ||
+              plan.type === "ADVANCE"
+          )
+          .reverse()
+      );
     plans &&
       liveChat &&
-      setSlicePlan(plans[planIndex].contents.slice(2).reverse());
+      setLiveChatPlan(
+        plans[planIndex].contents
+          .filter(
+            (plan) =>
+              plan.type === "ENTRY" ||
+              plan.type === "BASIC_LIVECHAT" ||
+              plan.type === "ADVANCE_LIVECHAT"
+          )
+          .reverse()
+      );
   }, [liveChat, planIndex, plans]);
 
   return (
@@ -48,17 +73,73 @@ function App() {
             <span className="switch-txt"></span>
           </label>
         </div>
+        {device === "mobile" && (
+          <>
+            <div className="rwd-plan-title">
+              <p>方案選擇</p>
+            </div>
+            <div className="rwd-plan">
+              <div className="all">
+                <input
+                  type="radio"
+                  name="planSelect"
+                  id={`planAll`}
+                  defaultChecked
+                  onClick={() => setPlanType("ALL")}
+                />
+                <label htmlFor={`planAll`}>全部</label>
+                <span>|</span>
+              </div>
+              {liveChat
+                ? liveChatPlan?.map((plan: any, index: number) => (
+                    <PlanSelect
+                      key={index}
+                      plan={plan}
+                      setPlanType={setPlanType}
+                      index={index}
+                    />
+                  ))
+                : slicePlan?.map((plan: any, index: number) => (
+                    <PlanSelect
+                      key={index}
+                      plan={plan}
+                      setPlanType={setPlanType}
+                      index={index}
+                    />
+                  ))}
+            </div>
+          </>
+        )}
       </div>
       <div className="container">
         {isLoading && <h1>Loading...</h1>}
-        {isSuccess && (
+        {isSuccess && device === "mobile" && (
           <>
-            <Entry />
-            {slicePlan?.map((plan: any, index: number) => (
-              <Card key={index} plan={plan} />
-            ))}
+            {planType === "ALL" &&
+              (liveChat
+                ? liveChatPlan?.map((plan: any, index: number) => (
+                    <Card key={index} plan={plan} />
+                  ))
+                : slicePlan?.map((plan: any, index: number) => (
+                    <Card key={index} plan={plan} />
+                  )))}
+            {planType !== "ALL" &&
+              (liveChat ? (
+                <Card plan={liveChatPlan[planType || 0]} />
+              ) : (
+                <Card plan={slicePlan[planType || 0]} />
+              ))}
           </>
         )}
+        {isSuccess &&
+          device === "PC" &&
+          (liveChat
+            ? liveChatPlan?.map((plan: any, index: number) => (
+                <Card key={index} plan={plan} />
+              ))
+            : slicePlan?.map((plan: any, index: number) => (
+                <Card key={index} plan={plan} />
+              )))}
       </div>
     </div>
   );

@@ -1,10 +1,10 @@
 import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
+import usePlan from "../../hooks/usePlan";
 import useRWD from "../../hooks/useRWD";
-import Business from "../Business";
 import Modal from "../Modal";
-import Pro from "../Pro";
+import Plan from "../Plan/Plan";
 
 type PropsType = {
   plan: any;
@@ -13,7 +13,9 @@ type PropsType = {
 export default function Card({ plan }: PropsType) {
   const [modal, setModal] = useState(false);
   const [collapse, setCollapse] = useState(true);
+  const [info, setInfo] = useState<any>();
   const device = useRWD();
+  const plans = usePlan();
   useEffect(() => {
     if (device === "mobile") {
       setCollapse(false);
@@ -23,22 +25,59 @@ export default function Card({ plan }: PropsType) {
       setCollapse(true);
     }
   }, [device]);
+  const style = () => {
+    switch (plan.type) {
+      case "ENTRY":
+        return "card-base-entry";
+      case "BASIC":
+        return "card-base-pro";
+      case "BASIC_LIVECHAT":
+        return "card-base-pro";
+      case "ADVANCE":
+        return "card-base-business";
+      case "ADVANCE_LIVECHAT":
+        return "card-base-business";
+      default:
+        break;
+    }
+  };
+  const color = () => {
+    switch (plan.type) {
+      case "ENTRY":
+        return "entry-plan";
+      case "BASIC":
+        return "pro-plan";
+      case "BASIC_LIVECHAT":
+        return "pro-plan";
+      case "ADVANCE":
+        return "business-plan";
+      case "ADVANCE_LIVECHAT":
+        return "business-plan";
+      default:
+        break;
+    }
+  };
+  const collapseCard = () => {
+    switch (plan.type) {
+      case "ENTRY":
+        return <Plan info={plans.entry} />;
+      case "BASIC":
+        return <Plan info={plans.business} />;
+      case "BASIC_LIVECHAT":
+        return <Plan info={plans.business} />;
+      case "ADVANCE":
+        return <Plan info={plans.pro} />;
+      case "ADVANCE_LIVECHAT":
+        return <Plan info={plans.pro} />;
+      default:
+        break;
+    }
+  };
+
   return (
     <div className="card">
-      <div
-        className={
-          plan.type === "BASIC" || plan.type === "BASIC_LIVECHAT"
-            ? "card-base-pro"
-            : "card-base-business"
-        }
-      ></div>
-      <div
-        className={
-          plan.type === "BASIC" || plan.type === "BASIC_LIVECHAT"
-            ? "pro-plan"
-            : "business-plan"
-        }
-      >
+      <div className={style()}></div>
+      <div className={color()}>
         <div className="title">
           <h4>{plan.title}</h4>
         </div>
@@ -66,9 +105,7 @@ export default function Card({ plan }: PropsType) {
             )}
           </button>
         </div>
-        {plan.type === "BASIC" || plan.type === "BASIC_LIVECHAT"
-          ? collapse && <Pro />
-          : collapse && <Business />}
+        {collapse && collapseCard()}
       </div>
     </div>
   );

@@ -1,3 +1,10 @@
+.modal-background {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
 .wrapper {
   position: absolute;
   top: 0;
@@ -9,6 +16,7 @@
   max-height: fit-content;
   background-color: #fff;
   box-shadow: 0 4px 20px 2px rgba(0, 0, 0, 0.4);
+  border-radius: 4px;
   display: flex;
   justify-content: center;
   align-items: start;
@@ -29,23 +37,49 @@
   width: 90%;
 }
 .form table {
-  border: 1px solid rgb(193, 193, 193);
+  /* border: 1px solid #e8e8e8; */
   font-size: 14px;
   width: 100%;
+}
+.form tbody {
+  border-radius: 4px;
 }
 .form tr,
 .form td,
 .form th {
-  border: 1px solid rgb(193, 193, 193);
+  border: 1px solid #e8e8e8;
   padding: 10px 15px;
   text-align: left;
   vertical-align: middle;
 }
 .form th {
-  background-color: rgb(235, 235, 235);
+  background-color: #fafafa;
+  color: rgba(0, 0, 0, 0.85);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.5;
+}
+.form tr:first-child .form th:first-child {
+  border-top-left-radius: 10px;
+}
+/*第一欄最後列：左下*/
+.form tr:last-child .form td:first-child {
+  border-bottom-left-radius: 10px;
+}
+/*最後欄第一列：右上*/
+tr:first-child td:last-child {
+  border-top-right-radius: 10px;
+}
+/*最後欄第一列：右下*/
+tr:last-child td:last-child {
+  border-bottom-right-radius: 10px;
 }
 .form td {
   width: 60%;
+  color: rgba(0, 0, 0, 0.65);
+}
+.form input[type="radio"] {
+  accent-color: #1da57a;
 }
 .notice {
   margin: 0px auto;
@@ -63,23 +97,25 @@
 }
 
 .notice p {
-  font-size: 12px;
-  color: rgb(175, 175, 175);
+  font-size: 0.875rem;
+  color: rgba(0, 0, 0, 0.65);
   text-align: left;
 }
 .button {
   margin: 10px 25px 20px auto;
 }
 .button button {
-  padding: 10px;
+  padding: 4.5px 15px;
   border: 1px solid rgb(211, 211, 211);
   border-radius: 5px;
   margin-left: 10px;
   background-color: #fff;
   cursor: pointer;
+  font-size: 0.875rem;
+  line-height: 1.5;
 }
 button[type="submit"] {
-  background-color: rgb(35, 182, 121);
+  background-color: #1da57a;
   color: #fff;
 }
 
@@ -93,5 +129,5 @@ button[type="submit"] {
   padding: 5px 10px;
   border-radius: 5px;
   border: 1px solid rgb(193, 193, 193);
-  width: 90%;
+  width: 100%;
 }

@@ -57,5 +57,11 @@ export default function useData() {
     setPlans(plans);
   }, [data, isSuccess]);
 
+  useEffect(() => {
+    plans?.forEach((plan) => {
+      plan.contents.push({ title: "入門版 ENTRY", type: "ENTRY", price: 0 });
+    });
+  }, [plans]);
+
   return { plans, isSuccess, isLoading };
 }
