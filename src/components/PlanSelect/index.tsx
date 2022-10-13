@@ -10,7 +10,7 @@ type PropType = {
   };
   setPlanType: React.Dispatch<React.SetStateAction<string | number>>;
   index: number;
-  planType?: string;
+  planType?: string | number;
 };
 
 export default function PlanSelect({
@@ -23,6 +23,12 @@ export default function PlanSelect({
 
   return (
     <div className={plan.type}>
+      {planType === index ? (
+        <FontAwesomeIcon
+          icon={faRobot}
+          style={{ color: "yellow", marginRight: "0.5rem" }}
+        />
+      ) : null}
       <input
         type="radio"
         name="planSelect"

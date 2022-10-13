@@ -36,7 +36,12 @@ export default function Plan({ info }: any) {
           <div></div>
         )}
         <span>
-          批次資料匯入/出: {info.dataIO && <strong>訂單、商品資料</strong>}
+          批次資料匯入/出
+          {info.dataIO && (
+            <span>
+              :<strong> 訂單、商品資料</strong>
+            </span>
+          )}
         </span>
       </div>
       <div className="label">
@@ -74,7 +79,12 @@ export default function Plan({ info }: any) {
           <div></div>
         )}
         <span>
-          金流:<strong>{info.paymentFlow}</strong>
+          金流
+          {info.paymentFlow && (
+            <span>
+              :<strong> {info.paymentFlow}</strong>
+            </span>
+          )}
         </span>
       </div>
       <div className="label">

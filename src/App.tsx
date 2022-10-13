@@ -5,6 +5,8 @@ import Month from "./components/Month";
 import Card from "./components/Card";
 import useRWD from "./hooks/useRWD";
 import PlanSelect from "./components/PlanSelect";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faRobot } from "@fortawesome/free-solid-svg-icons";
 
 function App() {
   const { plans, isSuccess, isLoading } = useData();
@@ -14,7 +16,7 @@ function App() {
   const [liveChatPlan, setLiveChatPlan] = useState<any>();
   const [liveChat, setLiveChat] = useState(false);
   const device = useRWD();
-  console.log(liveChatPlan);
+  console.log("liveChatPlan", liveChatPlan, "planType", planType);
 
   useEffect(() => {
     plans &&
@@ -79,6 +81,12 @@ function App() {
               <p>方案選擇</p>
             </div>
             <div className="rwd-plan">
+              {planType === "ALL" ? (
+                <FontAwesomeIcon
+                  icon={faRobot}
+                  style={{ color: "yellow", marginRight: "0.5rem" }}
+                />
+              ) : null}
               <div className="all">
                 <input
                   type="radio"
@@ -97,6 +105,7 @@ function App() {
                       plan={plan}
                       setPlanType={setPlanType}
                       index={index}
+                      planType={planType}
                     />
                   ))
                 : slicePlan?.map((plan: any, index: number) => (
@@ -105,6 +114,7 @@ function App() {
                       plan={plan}
                       setPlanType={setPlanType}
                       index={index}
+                      planType={planType}
                     />
                   ))}
             </div>
@@ -124,7 +134,7 @@ function App() {
                     <Card key={index} plan={plan} />
                   )))}
             {planType !== "ALL" &&
-              (liveChat ? (
+              (liveChat && liveChatPlan ? (
                 <Card plan={liveChatPlan[planType || 0]} />
               ) : (
                 <Card plan={slicePlan[planType || 0]} />

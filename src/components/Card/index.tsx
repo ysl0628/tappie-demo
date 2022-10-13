@@ -13,7 +13,7 @@ type PropsType = {
 export default function Card({ plan }: PropsType) {
   const [modal, setModal] = useState(false);
   const [collapse, setCollapse] = useState(true);
-  const [info, setInfo] = useState<any>();
+
   const device = useRWD();
   const plans = usePlan();
   useEffect(() => {
