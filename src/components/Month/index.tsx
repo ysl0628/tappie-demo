@@ -26,12 +26,7 @@ export default function Month({
 }: PropType) {
   return (
     <>
-      {planIndex === index ? (
-        <FontAwesomeIcon
-          icon={faRobot}
-          style={{ color: "yellow", marginRight: "0.5rem" }}
-        />
-      ) : null}
+      {planIndex === index ? <FontAwesomeIcon icon={faRobot} /> : null}
       <input
         type="radio"
         name="monthChoose"

@@ -23,12 +23,7 @@ export default function PlanSelect({
 
   return (
     <div className={plan.type}>
-      {planType === index ? (
-        <FontAwesomeIcon
-          icon={faRobot}
-          style={{ color: "yellow", marginRight: "0.5rem" }}
-        />
-      ) : null}
+      {planType === index ? <FontAwesomeIcon icon={faRobot} /> : null}
       <input
         type="radio"
         name="planSelect"

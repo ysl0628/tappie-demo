@@ -83,10 +83,8 @@ export default function Card({ plan }: PropsType) {
         </div>
         <div className="price-board">
           <p>
-            <span style={{ fontSize: "28px", fontWeight: "bolder" }}>
-              ${plan.price}
-            </span>
-            <span style={{ fontSize: "14px" }}>/ 月</span>
+            <strong>${plan.price}</strong>
+            <span>/ 月</span>
           </p>
           <button onClick={() => setModal(true)}>選擇</button>
           {modal && <Modal plan={plan} setModal={setModal} />}

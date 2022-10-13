@@ -81,12 +81,7 @@ function App() {
               <p>方案選擇</p>
             </div>
             <div className="rwd-plan">
-              {planType === "ALL" ? (
-                <FontAwesomeIcon
-                  icon={faRobot}
-                  style={{ color: "yellow", marginRight: "0.5rem" }}
-                />
-              ) : null}
+              {planType === "ALL" ? <FontAwesomeIcon icon={faRobot} /> : null}
               <div className="all">
                 <input
                   type="radio"
