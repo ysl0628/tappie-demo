@@ -1,5 +1,3 @@
-import React from "react";
-
 const usePlan = () => {
   const plans = {
     entry: {
@@ -34,10 +32,10 @@ const usePlan = () => {
       cart: true,
       orderSearch: true,
       widget: true,
-      hotItems: 1,
-      productSort: 2,
-      products: 5,
-      news: [2, 0],
+      hotItems: 5,
+      productSort: 4,
+      products: 40,
+      news: [5, 1],
       fan: "無上限",
     },
     pro: {
