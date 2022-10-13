@@ -5,6 +5,7 @@ import usePlan from "../../hooks/usePlan";
 import useRWD from "../../hooks/useRWD";
 import Modal from "../Modal";
 import Plan from "../Plan/Plan";
+import "./index.css";
 
 type PropsType = {
   plan: any;
