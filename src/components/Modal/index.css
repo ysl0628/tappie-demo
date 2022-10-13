@@ -66,27 +66,28 @@
   font-size: 14px;
   line-height: 1.5;
 }
-.form tr:first-child .form th:first-child {
-  border-top-left-radius: 10px;
-}
-/*第一欄最後列：左下*/
-.form tr:last-child .form td:first-child {
-  border-bottom-left-radius: 10px;
-}
-/*最後欄第一列：右上*/
-tr:first-child td:last-child {
-  border-top-right-radius: 10px;
-}
-/*最後欄第一列：右下*/
-tr:last-child td:last-child {
-  border-bottom-right-radius: 10px;
+.form select {
+  width: 120px;
+  height: 32px;
+  color: rgba(0, 0, 0, 0.65);
 }
 .form td {
   width: 60%;
   color: rgba(0, 0, 0, 0.65);
 }
+.form td b {
+  font-weight: bolder;
+}
 .form input[type="radio"] {
   accent-color: #1da57a;
+  margin: 0;
+  width: 1rem;
+  height: 1rem;
+  vertical-align: bottom;
+}
+.form label {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
 }
 .notice {
   margin: 0.5rem 0px;
