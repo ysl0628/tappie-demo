@@ -19,8 +19,6 @@ export default function PlanSelect({
   index,
   planType,
 }: PropType) {
-  console.log(plan);
-
   return (
     <div className={plan.type}>
       {planType === index ? <FontAwesomeIcon icon={faRobot} /> : null}

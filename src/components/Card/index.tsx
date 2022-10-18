@@ -17,6 +17,7 @@ export default function Card({ plan }: PropsType) {
 
   const device = useRWD();
   const plans = usePlan();
+
   useEffect(() => {
     if (device === "mobile") {
       setCollapse(false);

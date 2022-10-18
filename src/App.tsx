@@ -8,6 +8,8 @@ import PlanSelect from "./components/PlanSelect";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRobot } from "@fortawesome/free-solid-svg-icons";
 
+type PlanType = { title: string; type: string; price: number };
+
 function App() {
   const { plans, isSuccess, isLoading } = useData();
   const [planIndex, setPlanIndex] = useState(0);
@@ -17,6 +19,10 @@ function App() {
   const [liveChat, setLiveChat] = useState(false);
   const device = useRWD();
   console.log("liveChatPlan", liveChatPlan, "planType", planType);
+
+  const planSort = (a: PlanType, b: PlanType) => {
+    return a.type > b.type ? -1 : 1;
+  };
 
   useEffect(() => {
     plans &&
@@ -28,7 +34,7 @@ function App() {
               plan.type === "BASIC" ||
               plan.type === "ADVANCE"
           )
-          .reverse()
+          .sort(planSort)
       );
     plans &&
       liveChat &&
@@ -40,7 +46,7 @@ function App() {
               plan.type === "BASIC_LIVECHAT" ||
               plan.type === "ADVANCE_LIVECHAT"
           )
-          .reverse()
+          .sort(planSort)
       );
   }, [liveChat, planIndex, plans]);
 
