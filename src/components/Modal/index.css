@@ -94,7 +94,9 @@
   padding-right: 0.5rem;
 }
 .notice {
-  margin: 0.5rem 0px;
+  margin-top: 8px;
+  margin-bottom: 14px;
+  line-height: 21px;
 }
 
 @media (max-width: 767px) {

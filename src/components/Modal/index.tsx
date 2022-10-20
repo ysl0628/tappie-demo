@@ -48,18 +48,15 @@ export default function Modal({ setModal, plan }: PropsType) {
                     )}
                   </form>
                 </div>
-
                 <div className="notice">
                   <p>系統確認付款完成後，電子發票將會寄至： {userInfo.email}</p>
                 </div>
-                <div className="modal-button">
-                  <button onClick={() => setModal((prev) => !prev)}>
-                    Cancel
-                  </button>
-                  <button type="submit">OK</button>
-                </div>
               </>
             )}
+          </div>
+          <div className="modal-button">
+            <button onClick={() => setModal((prev) => !prev)}>Cancel</button>
+            <button type="submit">OK</button>
           </div>
         </div>
       </div>
