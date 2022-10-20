@@ -13,6 +13,7 @@ export type PlanType = [
         title: string;
         type: string;
         price: number;
+        level?: number;
       }
     ];
   }
@@ -48,6 +49,7 @@ export default function useData() {
               title: item.title,
               type: item.type,
               price: price.price,
+              level: null,
             });
           }
         });
@@ -59,8 +61,34 @@ export default function useData() {
 
   useEffect(() => {
     plans?.forEach((plan) => {
-      plan.contents.push({ title: "入門版 ENTRY", type: "ENTRY", price: 0 });
+      plan.contents.push({
+        title: "入門版 ENTRY",
+        type: "ENTRY",
+        price: 0,
+        level: 1,
+      });
     });
+  }, [plans]);
+
+  useEffect(() => {
+    plans?.forEach((plan, index) => {
+      plan.contents.forEach((content) => {
+        switch (content.type) {
+          case "ADVANCE_LIVECHAT":
+            return (content.level = 200);
+          case "BASIC_LIVECHAT":
+            return (content.level = 100);
+          case "ADVANCE":
+            return (content.level = 20);
+          case "BASIC":
+            return (content.level = 10);
+
+          default:
+            return (content.level = 1);
+        }
+      });
+    });
+    setPlans(plans);
   }, [plans]);
 
   return { plans, isSuccess, isLoading };
