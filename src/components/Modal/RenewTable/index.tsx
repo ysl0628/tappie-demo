@@ -1,5 +1,7 @@
 import moment from "moment";
+import { useState } from "react";
 import useUser from "../../../hooks/useUser";
+import Selector from "../Selector";
 
 type PropsType = {
   remainTime: number;
@@ -10,6 +12,7 @@ type PropsType = {
 export default function RenewTable({ remainTime, deadline, plan }: PropsType) {
   const userInfo = useUser();
   const expiration = moment(deadline).add(1, "month").format("YYYY-MM-DD");
+  const [company, setCompany] = useState(false);
 
   return (
     <table>
@@ -43,10 +46,7 @@ export default function RenewTable({ remainTime, deadline, plan }: PropsType) {
         <tr>
           <th>機器人模式</th>
           <td>
-            <select className="mode" name="mode" id="mode">
-              <option value="one">商城模式</option>
-              <option value="two">導流模式</option>
-            </select>
+            <Selector />
           </td>
         </tr>
         <tr>
@@ -63,7 +63,12 @@ export default function RenewTable({ remainTime, deadline, plan }: PropsType) {
           <td>
             <input type="radio" name="invoice" id="personal" defaultChecked />
             <label htmlFor="personal">個人</label>
-            <input type="radio" name="invoice" id="company" />
+            <input
+              type="radio"
+              name="invoice"
+              id="company"
+              onClick={() => setCompany(true)}
+            />
             <label htmlFor="company">公司</label>
           </td>
         </tr>
@@ -73,6 +78,32 @@ export default function RenewTable({ remainTime, deadline, plan }: PropsType) {
             <input className="email" type="text" placeholder={userInfo.email} />
           </td>
         </tr>
+        {company && (
+          <>
+            <tr>
+              <th>統一編號</th>
+              <td>
+                <input
+                  className="email"
+                  type="text"
+                  placeholder="統一編號 (8碼)"
+                />
+              </td>
+            </tr>
+            <tr>
+              <th>公司地址</th>
+              <td>
+                <input className="email" type="text" placeholder="公司地址" />
+              </td>
+            </tr>
+            <tr>
+              <th>公司名稱</th>
+              <td>
+                <input className="email" type="text" placeholder="公司名稱" />
+              </td>
+            </tr>
+          </>
+        )}
       </tbody>
     </table>
   );

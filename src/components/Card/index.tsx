@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import usePlan from "../../hooks/usePlan";
 import useRWD from "../../hooks/useRWD";
 import Modal from "../Modal";
+import Alert from "../Modal/Alert";
 import Plan from "../Plan/Plan";
 import "./index.css";
 
@@ -89,7 +90,12 @@ export default function Card({ plan }: PropsType) {
             <span>/ 月</span>
           </p>
           <button onClick={() => setModal(true)}>選擇</button>
-          {modal && <Modal plan={plan} setModal={setModal} />}
+          {modal &&
+            (plan.type === "ENTRY" ? (
+              <Alert setModal={setModal} />
+            ) : (
+              <Modal plan={plan} setModal={setModal} />
+            ))}
         </div>
         <div className="collapse">
           <button

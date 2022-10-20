@@ -2,6 +2,7 @@ import moment from "moment";
 import React from "react";
 import useUser from "../../hooks/useUser";
 import Backdrop from "../../UI/Backdrop";
+import Alert from "./Alert";
 import "./index.css";
 import RenewTable from "./RenewTable";
 import UpdateTable from "./UpdateTable";
@@ -29,35 +30,36 @@ export default function Modal({ setModal, plan }: PropsType) {
               <button onClick={() => setModal((prev) => !prev)}>X</button>
             </div>
             {plan.type === "ENTRY" ? null : (
-              <div className="form">
-                <form action="">
-                  {userInfo.currentType === plan.type ? (
-                    <RenewTable
-                      remainTime={remainTime}
-                      deadline={deadlineFormat}
-                      plan={plan}
-                    />
-                  ) : (
-                    <UpdateTable
-                      remainTime={remainTime}
-                      deadline={deadlineFormat}
-                      plan={plan}
-                    />
-                  )}
-                </form>
-              </div>
+              <>
+                <div className="form">
+                  <form action="">
+                    {userInfo.currentType === plan.type ? (
+                      <RenewTable
+                        remainTime={remainTime}
+                        deadline={deadlineFormat}
+                        plan={plan}
+                      />
+                    ) : (
+                      <UpdateTable
+                        remainTime={remainTime}
+                        deadline={deadlineFormat}
+                        plan={plan}
+                      />
+                    )}
+                  </form>
+                </div>
+
+                <div className="notice">
+                  <p>系統確認付款完成後，電子發票將會寄至： {userInfo.email}</p>
+                </div>
+                <div className="modal-button">
+                  <button onClick={() => setModal((prev) => !prev)}>
+                    Cancel
+                  </button>
+                  <button type="submit">OK</button>
+                </div>
+              </>
             )}
-            <div className="notice">
-              {plan.type === "ENTRY" ? (
-                <p>無法計算金額，請洽管理員</p>
-              ) : (
-                <p>系統確認付款完成後，電子發票將會寄至： {userInfo.email}</p>
-              )}
-            </div>
-          </div>
-          <div className="modal-button">
-            <button onClick={() => setModal((prev) => !prev)}>Cancel</button>
-            <button type="submit">OK</button>
           </div>
         </div>
       </div>

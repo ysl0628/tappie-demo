@@ -25,6 +25,8 @@ function App() {
   };
 
   useEffect(() => {
+    plans && console.log(plans);
+
     plans &&
       setSlicePlan(
         plans[planIndex].contents
