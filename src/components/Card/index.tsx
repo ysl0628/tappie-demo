@@ -1,8 +1,10 @@
 import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
+import useData from "../../hooks/useData";
 import usePlan from "../../hooks/usePlan";
 import useRWD from "../../hooks/useRWD";
+import useUser from "../../hooks/useUser";
 import Modal from "../Modal";
 import Alert from "../Modal/Alert";
 import Plan from "../Plan/Plan";
@@ -12,12 +14,19 @@ type PropsType = {
   plan: any;
 };
 
+type TypeStyleState = {
+  [x: string]: string;
+};
+
 export default function Card({ plan }: PropsType) {
   const [modal, setModal] = useState(false);
   const [collapse, setCollapse] = useState(true);
+  const [typeStyle, setTypeStyle] = useState<TypeStyleState>({});
+  const [currentLevel, setCurrentLevel] = useState<Number>();
 
   const device = useRWD();
   const plans = usePlan();
+  const user = useUser();
 
   useEffect(() => {
     if (device === "mobile") {
@@ -28,38 +37,36 @@ export default function Card({ plan }: PropsType) {
       setCollapse(true);
     }
   }, [device]);
-  const style = () => {
+
+  useEffect(() => {
+    let classColor: string;
+    let classStyle: string;
     switch (plan.type) {
       case "ENTRY":
-        return "card-base-entry";
+        classColor = "entry-plan";
+        classStyle = "card-base-entry";
+        return setTypeStyle({ color: classColor, style: classStyle });
       case "BASIC":
-        return "card-base-pro";
+        classColor = "pro-plan";
+        classStyle = "card-base-pro";
+        return setTypeStyle({ color: classColor, style: classStyle });
       case "BASIC_LIVECHAT":
-        return "card-base-pro";
+        classColor = "pro-plan";
+        classStyle = "card-base-pro";
+        return setTypeStyle({ color: classColor, style: classStyle });
       case "ADVANCE":
-        return "card-base-business";
+        classColor = "business-plan";
+        classStyle = "card-base-business";
+        return setTypeStyle({ color: classColor, style: classStyle });
       case "ADVANCE_LIVECHAT":
-        return "card-base-business";
+        classColor = "business-plan";
+        classStyle = "card-base-business";
+        return setTypeStyle({ color: classColor, style: classStyle });
       default:
         break;
     }
-  };
-  const color = () => {
-    switch (plan.type) {
-      case "ENTRY":
-        return "entry-plan";
-      case "BASIC":
-        return "pro-plan";
-      case "BASIC_LIVECHAT":
-        return "pro-plan";
-      case "ADVANCE":
-        return "business-plan";
-      case "ADVANCE_LIVECHAT":
-        return "business-plan";
-      default:
-        break;
-    }
-  };
+  }, [plan.type]);
+
   const collapseCard = () => {
     switch (plan.type) {
       case "ENTRY":
@@ -77,10 +84,25 @@ export default function Card({ plan }: PropsType) {
     }
   };
 
+  useEffect(() => {
+    if (plan.type === user.currentType) {
+      setCurrentLevel(plan.level);
+    }
+  }, [user.currentType]);
+
+  console.log(
+    "currentLevel:",
+    currentLevel,
+    "plan.level",
+    plan.level,
+    "plan.type",
+    plan.type
+  );
+
   return (
     <div className="card">
-      <div className={style()}></div>
-      <div className={color()}>
+      <div className={typeStyle.style}></div>
+      <div className={typeStyle.color}>
         <div className="title">
           <h4>{plan.title}</h4>
         </div>
@@ -94,7 +116,11 @@ export default function Card({ plan }: PropsType) {
             (plan.type === "ENTRY" ? (
               <Alert setModal={setModal} />
             ) : (
-              <Modal plan={plan} setModal={setModal} />
+              <Modal
+                plan={plan}
+                setModal={setModal}
+                currentLevel={currentLevel as number}
+              />
             ))}
         </div>
         <div className="collapse">
