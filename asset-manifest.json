@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/tappie-demo/static/css/main.08888a52.css",
-    "main.js": "/tappie-demo/static/js/main.0f6fd86a.js",
+    "main.css": "/tappie-demo/static/css/main.ac77ba85.css",
+    "main.js": "/tappie-demo/static/js/main.da1f3125.js",
     "static/js/787.a1659c02.chunk.js": "/tappie-demo/static/js/787.a1659c02.chunk.js",
     "index.html": "/tappie-demo/index.html",
-    "main.08888a52.css.map": "/tappie-demo/static/css/main.08888a52.css.map",
-    "main.0f6fd86a.js.map": "/tappie-demo/static/js/main.0f6fd86a.js.map",
+    "main.ac77ba85.css.map": "/tappie-demo/static/css/main.ac77ba85.css.map",
+    "main.da1f3125.js.map": "/tappie-demo/static/js/main.da1f3125.js.map",
     "787.a1659c02.chunk.js.map": "/tappie-demo/static/js/787.a1659c02.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.08888a52.css",
-    "static/js/main.0f6fd86a.js"
+    "static/css/main.ac77ba85.css",
+    "static/js/main.da1f3125.js"
   ]
 }
