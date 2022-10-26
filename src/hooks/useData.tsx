@@ -31,8 +31,8 @@ const defaultContents = {
 };
 
 const contentTypeLevelList: TypeLevel = {
-  ADVANCE_LIVECHAT: 200,
-  BASIC_LIVECHAT: 100,
+  ADVANCE_LIVECHAT: 20,
+  BASIC_LIVECHAT: 10,
   ADVANCE: 20,
   BASIC: 10,
 };
