@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import "./App.css";
 import useData from "./hooks/useData";
 import Month from "./components/Month";
@@ -7,6 +7,7 @@ import useRWD from "./hooks/useRWD";
 import PlanSelect from "./components/PlanSelect";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRobot } from "@fortawesome/free-solid-svg-icons";
+import useUser from "./hooks/useUser";
 
 type PlanType = { title: string; type: string; price: number };
 
@@ -17,16 +18,25 @@ function App() {
   const [slicePlan, setSlicePlan] = useState<any>();
   const [liveChatPlan, setLiveChatPlan] = useState<any>();
   const [liveChat, setLiveChat] = useState(false);
-  const device = useRWD();
-  console.log("liveChatPlan", liveChatPlan, "planType", planType);
+  const [currentLevel, setCurrentLevel] = useState<Number>();
 
-  const planSort = (a: PlanType, b: PlanType) => {
-    return a.type > b.type ? -1 : 1;
-  };
+  const device = useRWD();
+  const user = useUser();
+
+  const planSort = (a: PlanType, b: PlanType) => (a.type > b.type ? -1 : 1);
 
   useEffect(() => {
-    plans && console.log(plans);
+    plans &&
+      plans[0].contents.find((content) => {
+        if (content.type === user.currentType) {
+          setCurrentLevel(content.level);
+          return true;
+        }
+        return false;
+      });
+  }, [plans, user.currentType]);
 
+  useEffect(() => {
     plans &&
       setSlicePlan(
         plans[planIndex].contents
@@ -131,16 +141,30 @@ function App() {
             {planType === "ALL" &&
               (liveChat
                 ? liveChatPlan?.map((plan: any, index: number) => (
-                    <Card key={index} plan={plan} />
+                    <Card
+                      key={index}
+                      plan={plan}
+                      currentLevel={currentLevel as number}
+                    />
                   ))
                 : slicePlan?.map((plan: any, index: number) => (
-                    <Card key={index} plan={plan} />
+                    <Card
+                      key={index}
+                      plan={plan}
+                      currentLevel={currentLevel as number}
+                    />
                   )))}
             {planType !== "ALL" &&
               (liveChat && liveChatPlan ? (
-                <Card plan={liveChatPlan[planType || 0]} />
+                <Card
+                  plan={liveChatPlan[planType || 0]}
+                  currentLevel={currentLevel as number}
+                />
               ) : (
-                <Card plan={slicePlan[planType || 0]} />
+                <Card
+                  plan={slicePlan[planType || 0]}
+                  currentLevel={currentLevel as number}
+                />
               ))}
           </>
         )}
@@ -148,10 +172,18 @@ function App() {
           device === "PC" &&
           (liveChat
             ? liveChatPlan?.map((plan: any, index: number) => (
-                <Card key={index} plan={plan} />
+                <Card
+                  key={index}
+                  plan={plan}
+                  currentLevel={currentLevel as number}
+                />
               ))
             : slicePlan?.map((plan: any, index: number) => (
-                <Card key={index} plan={plan} />
+                <Card
+                  key={index}
+                  plan={plan}
+                  currentLevel={currentLevel as number}
+                />
               )))}
       </div>
     </div>

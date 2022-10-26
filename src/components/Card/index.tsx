@@ -12,17 +12,17 @@ import "./index.css";
 
 type PropsType = {
   plan: any;
+  currentLevel: number;
 };
 
 type TypeStyleState = {
   [x: string]: string;
 };
 
-export default function Card({ plan }: PropsType) {
+export default function Card({ plan, currentLevel }: PropsType) {
   const [modal, setModal] = useState(false);
   const [collapse, setCollapse] = useState(true);
   const [typeStyle, setTypeStyle] = useState<TypeStyleState>({});
-  const [currentLevel, setCurrentLevel] = useState<Number>();
 
   const device = useRWD();
   const plans = usePlan();
@@ -83,21 +83,6 @@ export default function Card({ plan }: PropsType) {
         break;
     }
   };
-
-  useEffect(() => {
-    if (plan.type === user.currentType) {
-      setCurrentLevel(plan.level);
-    }
-  }, [user.currentType]);
-
-  console.log(
-    "currentLevel:",
-    currentLevel,
-    "plan.level",
-    plan.level,
-    "plan.type",
-    plan.type
-  );
 
   return (
     <div className="card">

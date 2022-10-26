@@ -9,14 +9,24 @@ import UpdateTable from "./UpdateTable";
 type PropsType = {
   setModal: React.Dispatch<React.SetStateAction<boolean>>;
   plan: any;
+  currentLevel: number;
 };
 
-export default function Modal({ setModal, plan }: PropsType) {
+export default function Modal({ setModal, plan, currentLevel }: PropsType) {
   const userInfo = useUser();
   const deadline = moment(userInfo.subDate).add(30, "days");
   const deadlineFormat = deadline.format("YYYY-MM-DD");
   const now = moment();
   let remainTime = deadline.diff(now, "days");
+
+  console.log(
+    "currentLevel:",
+    currentLevel,
+    "plan.level",
+    plan.level,
+    "plan.type",
+    plan.type
+  );
 
   return (
     <Backdrop>
@@ -29,7 +39,7 @@ export default function Modal({ setModal, plan }: PropsType) {
             <div className="close">
               <button onClick={() => setModal((prev) => !prev)}>X</button>
             </div>
-            {plan.type === "ENTRY" ? null : (
+            {plan.type !== "ENTRY" && currentLevel! > plan.level ? null : (
               <>
                 <div className="form">
                   <form action="">

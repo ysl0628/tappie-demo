@@ -19,18 +19,23 @@ export type PlanType = [
   }
 ];
 
-// const data = [
-//   {
-//     month: 1,
-//     contents: [
-//       {
-//         title: "basic",
-//         type: "basic",
-//         price: 100,
-//       },
-//     ],
-//   },
-// ];
+type TypeLevel = {
+  [x: string]: number;
+};
+
+const defaultContents = {
+  title: "入門版 ENTRY",
+  type: "ENTRY",
+  price: 0,
+  level: 1,
+};
+
+const contentTypeLevelList: TypeLevel = {
+  ADVANCE_LIVECHAT: 200,
+  BASIC_LIVECHAT: 100,
+  ADVANCE: 20,
+  BASIC: 10,
+};
 
 export default function useData() {
   const [plans, setPlans] = useState<PlanType>();
@@ -60,32 +65,17 @@ export default function useData() {
   }, [data, isSuccess]);
 
   useEffect(() => {
-    plans?.forEach((plan) => {
-      plan.contents.push({
-        title: "入門版 ENTRY",
-        type: "ENTRY",
-        price: 0,
-        level: 1,
-      });
-    });
+    plans?.forEach((plan) => plan.contents.push(defaultContents));
   }, [plans]);
 
   useEffect(() => {
     plans?.forEach((plan, index) => {
       plan.contents.forEach((content) => {
-        switch (content.type) {
-          case "ADVANCE_LIVECHAT":
-            return (content.level = 200);
-          case "BASIC_LIVECHAT":
-            return (content.level = 100);
-          case "ADVANCE":
-            return (content.level = 20);
-          case "BASIC":
-            return (content.level = 10);
-
-          default:
-            return (content.level = 1);
+        if (contentTypeLevelList[content.type]) {
+          content.level = contentTypeLevelList[content.type];
+          return;
         }
+        content.level = 1;
       });
     });
     setPlans(plans);
