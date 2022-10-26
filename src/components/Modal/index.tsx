@@ -60,7 +60,9 @@ export default function Modal({ setModal, plan, currentLevel }: PropsType) {
           </div>
           <div className="modal-button">
             <button onClick={() => setModal((prev) => !prev)}>Cancel</button>
-            <button type="submit">OK</button>
+            <button type="submit" onClick={() => setModal((prev) => !prev)}>
+              OK
+            </button>
           </div>
         </div>
       </div>
