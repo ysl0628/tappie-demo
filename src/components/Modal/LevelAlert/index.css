@@ -1,0 +1,57 @@
+.alert-content tr {
+  display: table-row;
+  vertical-align: inherit;
+}
+
+.alert-content td {
+  display: table-cell;
+}
+.alert-title {
+  font-size: 0.875rem;
+  color: rgba(0, 0, 0, 0.65);
+  padding-bottom: 0.5rem;
+  line-height: 1.5;
+}
+
+.alert-title strong {
+  font-weight: 700;
+}
+
+a {
+  color: #1da57a;
+  text-decoration: none;
+}
+
+.alert-content {
+  font-size: 0.875rem;
+  color: rgba(0, 0, 0, 0.65);
+  line-height: 1.5;
+  display: flex;
+  flex-direction: row;
+}
+
+.qr-code {
+  width: 50%;
+  display: flex;
+  flex-direction: row;
+}
+
+.image {
+  padding: 10px;
+  max-width: 117.5px;
+  max-height: 117.5px;
+}
+
+.line,
+.facebook {
+  width: 50%;
+  text-align: center;
+}
+
+.contract {
+  width: 50%;
+  padding-top: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}

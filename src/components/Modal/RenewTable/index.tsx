@@ -31,7 +31,7 @@ export default function RenewTable({ remainTime, deadline, plan }: PropsType) {
         </tr>
         <tr>
           <th>續約版本</th>
-          <td>專業版 PRO</td>
+          <td>{userInfo.currentPlan}</td>
         </tr>
         <tr>
           <th>總費用</th>
