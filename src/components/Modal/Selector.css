@@ -28,6 +28,10 @@
   z-index: 1;
 }
 
+.fa-chevron-down {
+  cursor: pointer;
+}
+
 .option-list {
   padding: 11px;
   margin: 0;
