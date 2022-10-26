@@ -4,6 +4,7 @@ import useUser from "../../hooks/useUser";
 import Backdrop from "../../UI/Backdrop";
 import Alert from "./Alert";
 import "./index.css";
+import LevelAlert from "./LevelAlert";
 import RenewTable from "./RenewTable";
 import UpdateTable from "./UpdateTable";
 type PropsType = {
@@ -19,15 +20,6 @@ export default function Modal({ setModal, plan, currentLevel }: PropsType) {
   const now = moment();
   let remainTime = deadline.diff(now, "days");
 
-  console.log(
-    "currentLevel:",
-    currentLevel,
-    "plan.level",
-    plan.level,
-    "plan.type",
-    plan.type
-  );
-
   return (
     <Backdrop>
       <div
@@ -39,7 +31,9 @@ export default function Modal({ setModal, plan, currentLevel }: PropsType) {
             <div className="close">
               <button onClick={() => setModal((prev) => !prev)}>X</button>
             </div>
-            {plan.type !== "ENTRY" && currentLevel! > plan.level ? null : (
+            {plan.type !== "ENTRY" && currentLevel! > plan.level ? (
+              <LevelAlert plan={plan} />
+            ) : (
               <>
                 <div className="form">
                   <form action="">
