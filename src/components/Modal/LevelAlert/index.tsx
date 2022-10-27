@@ -1,10 +1,13 @@
+import useUser from "../../../hooks/useUser";
 import "./index.css";
 
 const LevelAlert = ({ plan }: any) => {
+  const userInfo = useUser();
   return (
     <div>
       <div className="alert-title">
-        目前為 <strong>企業版</strong>，欲選購 <strong>{plan.title}</strong>
+        目前為 <strong>{userInfo.currentPlan}</strong>，欲選購{" "}
+        <strong>{plan.title}</strong>
         ，請聯繫我們，我們將即刻開始協助您。
       </div>
       <div className="alert-content">
